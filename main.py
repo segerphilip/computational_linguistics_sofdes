@@ -55,9 +55,9 @@ def sentiment_training(learning_data, fb):
 		print likePercentage
 		print commentPercentage
 		#like formula
-		likeMetric = 5*likePercentage**2 + .283*likePercentage -.084
+		likeMetric = -.025*likePercentage**2 + .374*likePercentage -.227
 		#comment formula
-		commentMetric = 5*commentPercentage**2+.283*commentPercentage -.084
+		commentMetric =-.54*commentPercentage**2+1.639*commentPercentage -.33
 
 		if likeMetric > 1:
 			likeMetric = 1
@@ -83,9 +83,9 @@ def sentiment_training(learning_data, fb):
 	print popularity_data
 	training_data = [Document(status, type= popularity, stopwords=True) for status, popularity in popularity_data.items()]
 
-	nb = NB(train=training_data)
+	knn = KNN(train=training_data)
 
-	return nb
+	return knn
 
 def sentiment_training_unit_test():
 	test_license = "CAAEuAis8fUgBAGZBa7tSoTRZCIEfE7vzDVDTweZBEkufbhUPsnW7v2KuY27OeJDvZBoa4CDg8Bm6ZAsCnlAhFUlw8SUdMcM3yKAXtVqOd0cgpsYkB5MpRH2vP97W5NWkOWvJ8VknnfIpe7HE0vUE7uxJRJG7M1gRrXf5fjuRWLYW0GLyDv2Lg"
@@ -97,6 +97,6 @@ def sentiment_training_unit_test():
 	classifier = sentiment_training(data,fb)
 
 	print classifier.classes
-	print classifier.classify("I heart Joe Biden #yolo")
+	print classifier.classify("I'm so excited for the next party")
 
 sentiment_training_unit_test()
