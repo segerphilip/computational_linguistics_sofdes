@@ -43,6 +43,8 @@ def sentiment_training(learning_data, fb):
 		comments = reaction[0]
 		for comment in comments:
 			feeling += sentiment(comment)[0]
+			print comment
+			raw_input()
 		#Add real popularity metric
 		if len(comments) > 0:
 			feeling /= len(comments)
