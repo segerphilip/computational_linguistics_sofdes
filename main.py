@@ -6,7 +6,7 @@ def parse_facebook(fb):
 	status_dict = {}
 	profile = fb.profile(id = None)
 
-	for post in fb.search(profile[0],type = NEWS, count=50):
+	for post in fb.search(profile[0],type = NEWS, count=100):
 		status = repr(post.text)
 		comments = ()
  
@@ -38,7 +38,6 @@ def sentiment_training(learning_data, fb):
 	popularity_data = {}
 	profile = fb.profile(id = None)
 	friends = len(fb.search(profile[0], type=FRIENDS, count=10000))
-	print friends
 	for status, reaction in (learning_data.iteritems()):
 		feeling = 0.0
 		comments = reaction[0]
@@ -62,7 +61,6 @@ def sentiment_training(learning_data, fb):
 			commentMetric = 1
 
 		feeling = (feeling + likeMetric + commentMetric)/3
-		print feeling
 		if feeling > .6 :
 			popularity = "Very Popular"
 		elif feeling > .1:
