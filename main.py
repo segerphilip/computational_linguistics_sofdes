@@ -47,13 +47,9 @@ def sentiment_training(learning_data, fb):
 		#Add real popularity metric
 		if len(comments) > 0:
 			feeling /= len(comments)	
-		print reaction [1]
-		print len(comments)
 		likePercentage = float(reaction[1])/float(friends)*100
 		commentPercentage = float(len(comments))/float(friends)*100
 
-		print likePercentage
-		print commentPercentage
 		#like formula
 		likeMetric = -.025*likePercentage**2 + .374*likePercentage -.227
 		#comment formula
@@ -68,24 +64,23 @@ def sentiment_training(learning_data, fb):
 		feeling = (feeling + likeMetric + commentMetric)/3
 		print feeling
 		if feeling > .6 :
-			popularity = "Yo dog, you will be so popular"
+			popularity = "Very Popular"
 		elif feeling > .1:
-			popularity = "good"
+			popularity = "Popular"
 		elif feeling > -.09:
-			popularity = "fine"
+			popularity = "Meh"
 		elif feeling >  -.59:
-			popularity = "bad"
+			popularity = "Not Popular"
 		else:
 			popularity = "BAD"
 
 		popularity_data.update({status:popularity})
 
-	print popularity_data
 	training_data = [Document(status, type= popularity, stopwords=True) for status, popularity in popularity_data.items()]
 
-	knn = KNN(train=training_data)
+	slp = SLP(train=training_data)
 
-	return knn
+	return slp
 
 def sentiment_training_unit_test():
 	test_license = "CAAEuAis8fUgBAGZBa7tSoTRZCIEfE7vzDVDTweZBEkufbhUPsnW7v2KuY27OeJDvZBoa4CDg8Bm6ZAsCnlAhFUlw8SUdMcM3yKAXtVqOd0cgpsYkB5MpRH2vP97W5NWkOWvJ8VknnfIpe7HE0vUE7uxJRJG7M1gRrXf5fjuRWLYW0GLyDv2Lg"
@@ -99,4 +94,24 @@ def sentiment_training_unit_test():
 	print classifier.classes
 	print classifier.classify("I'm so excited for the next party")
 
-sentiment_training_unit_test()
+if __name__ == '__main__':
+
+	license = raw_input("What is your Facebook license key?: ")
+	status = raw_input("What is your next status: ")
+
+	fb = Facebook(license)
+
+	data = parse_facebook(fb)
+
+	classifier = sentiment_training(data,fb)
+
+	classification=classifier.classify(status)
+
+	print classification
+
+	if sentiment(status)[0] <-.5 and classification is ("Popular" or "Very Popular"):
+		classification = "Not Popular"
+	elif sentiment(status)[0] <-.5 and classification is ("Meh" or "Not Popular"):
+		classification = "BAD"
+
+	print "This post will be: " + classification
