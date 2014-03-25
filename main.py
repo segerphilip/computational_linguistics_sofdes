@@ -39,7 +39,7 @@ def parse_facebook(fb):
 
 #super fun handy unit test, using Austin as the guinea pig
 def parse_facebook_unit_test():
-	test_license = "CAAEuAis8fUgBAGZBa7tSoTRZCIEfE7vzDVDTweZBEkufbhUPsnW7v2KuY27OeJDvZBoa4CDg8Bm6ZAsCnlAhFUlw8SUdMcM3yKAXtVqOd0cgpsYkB5MpRH2vP97W5NWkOWvJ8VknnfIpe7HE0vUE7uxJRJG7M1gRrXf5fjuRWLYW0GLyDv2Lg"
+	test_license = "LICENSEKEYHERE"
 	test_name = "Austin Greene"
 	fb = Facebook(test_license)
 	#get the proper fb data
@@ -104,7 +104,7 @@ def sentiment_training(learning_data, fb):
 
 #more unit testing woo!
 def sentiment_training_unit_test():
-	test_license = "CAAEuAis8fUgBAGZBa7tSoTRZCIEfE7vzDVDTweZBEkufbhUPsnW7v2KuY27OeJDvZBoa4CDg8Bm6ZAsCnlAhFUlw8SUdMcM3yKAXtVqOd0cgpsYkB5MpRH2vP97W5NWkOWvJ8VknnfIpe7HE0vUE7uxJRJG7M1gRrXf5fjuRWLYW0GLyDv2Lg"
+	test_license = "LICENSEKEYHERE"
 	#austin funkhouser, woah. That's strange :)
 	test_name = "Austin Funkhouser"
 	fb = Facebook(test_license)
@@ -120,8 +120,8 @@ def sentiment_training_unit_test():
 if __name__ == '__main__':
 	#get the license from keyboard input, probably want to crtl-v :)
 	license = raw_input("What is your Facebook license key?: ")
-	# Philip : CAAEuAis8fUgBAL68FHHC3QZAxBlrUPLc8PKqP8qvbedGbLFtgA4w3E8EZBxFRvDifZARY0rv1lxCDipwwT7b21X0j9M4aM3tsmxyYogJ53PevOBvZCvQa4ZBOmZCFxpZC4RSFbl8yN0flqZBUJXO2qczm3gOZBwCZCc4bzXHFiZBejNcAnsgkSiStWL
-	# Austin : CAAEuAis8fUgBAGZBa7tSoTRZCIEfE7vzDVDTweZBEkufbhUPsnW7v2KuY27OeJDvZBoa4CDg8Bm6ZAsCnlAhFUlw8SUdMcM3yKAXtVqOd0cgpsYkB5MpRH2vP97W5NWkOWvJ8VknnfIpe7HE0vUE7uxJRJG7M1gRrXf5fjuRWLYW0GLyDv2Lg
+	# Philip : LICENSEKEYHERE
+	# Austin : LICENSEKEYHERE
 	#input a possible post to be evaluated
 	status = raw_input("What is your next status: ")
 	# I hate everyone ==> Not popular
